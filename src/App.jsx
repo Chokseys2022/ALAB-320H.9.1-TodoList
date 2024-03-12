@@ -2,23 +2,18 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div className="container">
+    <div className="background">
+      <p className="heading">To Do List</p>
+      <div className="taskcontainer">
         <div>
-          <div className="heading">    
-            <h1>To Do List</h1>
-           <div className= "task"></div>
-           <input/>
-           <button>ADD</button>
-           <button>EDIT</button>
-           <button>DELETE</button>
-          </div>
+          <input className='text'/>
+          <button className ='addButton'>ADD</button>
+          <button>EDIT</button>
+          <button>DELETE</button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
