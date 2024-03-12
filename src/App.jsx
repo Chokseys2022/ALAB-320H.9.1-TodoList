@@ -1,20 +1,19 @@
-import { useState } from "react";
-import "./App.css";
+import React from "react";
 
-function App() {
-  return (
-    <div className="background">
-      <p className="heading">To Do List</p>
-      <div className="taskcontainer">
-        <div>
-          <input className='text'/>
-          <button className ='addButton'>ADD</button>
-          <button>EDIT</button>
-          <button>DELETE</button>
-        </div>
-      </div>
-    </div>
-  );
+function reducer(state, action) {}
+
+export default function App() {
+  const [todos, dispatch] = useReducer(reducer, []);
 }
 
-export default App;
+return (
+  <>
+    <form>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+    </form>
+  </>
+);
