@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from "react";
 import Todo from "./Todo.jsx";
 
-const ACTIONS = {
+export const ACTIONS = {
   ADD_TODO: "add-todo",
   TOGGLE_TODO: "toggle_todo",
 };
@@ -11,6 +11,12 @@ function reducer(todos, action) {
     case ACTIONS.ADD_TODO:
       return [...todos, newTodo(action.payload.name)];
     case ACTIONS.TOGGLE_TODO:
+      return todos.map(todo=> {
+        if(todo.id=== action.payload.id){
+          return {...todo, complete: !todo.complete}
+        }
+        return todo
+      })
   }
 }
 
@@ -38,7 +44,7 @@ export default function App() {
         />
       </form>
       {todos.map((todo) => {
-        return <Todo key={todo.id} todo={todo} />;
+        return <Todo key={todo.id} todo={todo} dispatch ={dispatch}/>;
       })}
     </>
   );
