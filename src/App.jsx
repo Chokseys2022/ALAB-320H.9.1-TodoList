@@ -105,7 +105,7 @@ export default function App() {
   return (
     <div className="background">
       <div className="taskcontainer">
-        <h1 className="heading">Todo List</h1>
+        <h1 className="heading">React To-Do List</h1>
         <form onSubmit={handleSubmit}>
           <input
             className="listItem"
