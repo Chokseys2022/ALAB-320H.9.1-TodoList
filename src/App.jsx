@@ -1,9 +1,11 @@
-// Import necessary modules from React and your stylesheets
+//App.jsx
+
+// Imports
 import React, { useReducer, useState } from "react";
 import "./App.css";
 import note from "../note.png";
 
-// Define action types for your todo list
+// Define action
 export const ACTIONS = {
   ADD_TODO: "add-todo",
   TOGGLE_TODO: "toggle_todo",
@@ -29,7 +31,7 @@ function reducer(todos, action) {
       // When deleting a todo, filter out the todo with the specified ID
       return todos.filter((todo) => todo.id !== action.payload.id);
     case ACTIONS.EDIT_TODO:
-      // When editing a todo, update the name of the corresponding todo
+      // update the name of the corresponding todo
       return todos.map((todo) => {
         if (todo.id === action.payload.id) {
           return { ...todo, name: action.payload.name };
@@ -52,12 +54,12 @@ export function Todo({ todo, dispatch }) {
   const [editMode, setEditMode] = useState(false);
   const [editText, setEditText] = useState(todo.name);
 
-  // Handler function to enable edit mode
+  // function to enable edit mode
   const handleEdit = () => {
     setEditMode(true);
   };
 
-  // Handler function to save edited todo
+  //function to save edited todo
   const handleSave = () => {
     dispatch({
       type: ACTIONS.EDIT_TODO,
@@ -68,7 +70,6 @@ export function Todo({ todo, dispatch }) {
 
   return (
     <div className="todos">
-      {/* Display todo name or input field based on edit mode */}
       {editMode ? (
         <input
           type="text"
@@ -85,7 +86,6 @@ export function Todo({ todo, dispatch }) {
         </span>
       )}
       <div className="todoButtons">
-        {/* Buttons to toggle completion, edit, delete, and save */}
         {!editMode && (
           <>
             <input
@@ -120,7 +120,7 @@ export function Todo({ todo, dispatch }) {
   );
 }
 
-// App component representing the overall todo list application
+// App component for todo list appl
 export default function App() {
   // State for managing todo list and input field for new todo
   const [todos, dispatch] = useReducer(reducer, []);
@@ -137,7 +137,7 @@ export default function App() {
     <div className="background">
       <div className="taskcontainer">
         {/* <h1 className="heading">To Do List</h1> */}
-        {/* Image of note */}
+
         <div className="note-image-container">
           <img src={note} alt="Note" className="notepad-image" />
         </div>
@@ -154,11 +154,11 @@ export default function App() {
             Add Task
           </button>
         </form>
-        {/* Display message if no todos available */}
+
         {todos.length === 0 && (
           <p className="noItem"> Task list is empty, add a new task</p>
         )}
-        {/* Render each todo item */}
+
         {todos.map((todo) => (
           <Todo key={todo.id} todo={todo} dispatch={dispatch} />
         ))}
@@ -166,3 +166,4 @@ export default function App() {
     </div>
   );
 }
+//--------------------------------------END CODE--------------------------------------------//
