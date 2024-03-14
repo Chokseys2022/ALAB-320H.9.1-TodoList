@@ -1,6 +1,7 @@
 // Import necessary modules from React and your stylesheets
 import React, { useReducer, useState } from "react";
-import "./App.css"; 
+import "./App.css";
+import note from "../note.png";
 
 // Define action types for your todo list
 export const ACTIONS = {
@@ -26,7 +27,7 @@ function reducer(todos, action) {
       });
     case ACTIONS.DELETE_TODO:
       // When deleting a todo, filter out the todo with the specified ID
-      return todos.filter(todo => todo.id !== action.payload.id);
+      return todos.filter((todo) => todo.id !== action.payload.id);
     case ACTIONS.EDIT_TODO:
       // When editing a todo, update the name of the corresponding todo
       return todos.map((todo) => {
@@ -58,12 +59,15 @@ export function Todo({ todo, dispatch }) {
 
   // Handler function to save edited todo
   const handleSave = () => {
-    dispatch({ type: ACTIONS.EDIT_TODO, payload: { id: todo.id, name: editText } });
+    dispatch({
+      type: ACTIONS.EDIT_TODO,
+      payload: { id: todo.id, name: editText },
+    });
     setEditMode(false);
   };
 
   return (
-    <div className="todoItem">
+    <div className="todos">
       {/* Display todo name or input field based on edit mode */}
       {editMode ? (
         <input
@@ -73,7 +77,10 @@ export function Todo({ todo, dispatch }) {
           autoFocus
         />
       ) : (
-        <span className="todoName" style={{ color: todo.complete ? "#AAA" : "#000" }}>
+        <span
+          className="todoName"
+          style={{ color: todo.complete ? "#AAA" : "#000" }}
+        >
           {todo.name}
         </span>
       )}
@@ -85,18 +92,21 @@ export function Todo({ todo, dispatch }) {
               type="checkbox"
               checked={todo.complete}
               onChange={() =>
-                dispatch({ type: ACTIONS.TOGGLE_TODO, payload: { id: todo.id } })
+                dispatch({
+                  type: ACTIONS.TOGGLE_TODO,
+                  payload: { id: todo.id },
+                })
               }
             />
-            <button
-              onClick={handleEdit}
-              disabled={editMode}
-            >
+            <button onClick={handleEdit} disabled={editMode}>
               Edit
             </button>
             <button
               onClick={() =>
-                dispatch({ type: ACTIONS.DELETE_TODO, payload: { id: todo.id } })
+                dispatch({
+                  type: ACTIONS.DELETE_TODO,
+                  payload: { id: todo.id },
+                })
               }
               disabled={!todo.complete}
             >
@@ -104,9 +114,7 @@ export function Todo({ todo, dispatch }) {
             </button>
           </>
         )}
-        {editMode && (
-          <button onClick={handleSave}>Save</button>
-        )}
+        {editMode && <button onClick={handleSave}>Save</button>}
       </div>
     </div>
   );
@@ -128,22 +136,27 @@ export default function App() {
   return (
     <div className="background">
       <div className="taskcontainer">
-        {/* Heading for the todo list */}
-        <h1 className="heading">React To-Do List</h1>
+        {/* <h1 className="heading">To Do List</h1> */}
+        {/* Image of note */}
+        <div className="note-image-container">
+          <img src={note} alt="Note" className="notepad-image" />
+        </div>
         {/* Form for adding new todo */}
         <form onSubmit={handleSubmit}>
           <input
-            className="listItem"
+            className="addTodo"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Enter a new task..."
+            placeholder="Add new to do..."
           />
-          <button className="listItem" type="submit">Add Task</button>
+          <button className="addTodo" type="submit">
+            Add Task
+          </button>
         </form>
         {/* Display message if no todos available */}
         {todos.length === 0 && (
-          <p className="noItem">No tasks available. Add some tasks!</p>
+          <p className="noItem"> Task list is empty, add a new task</p>
         )}
         {/* Render each todo item */}
         {todos.map((todo) => (

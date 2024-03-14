@@ -20,7 +20,8 @@
   margin-bottom: 20px;
 }
 
-.heading {
+/*changed heading text to image...saving this as place holder in case of change in plans
+/* .heading {
   color: #3f5457;
   font-size: 42px;
   font-weight: bolder;
@@ -28,7 +29,7 @@
   margin-bottom: 50px;
   padding: 15px 25px;
   border-radius: 8px;
-}
+} */
 
 .noItem {
   color: black;
@@ -37,7 +38,7 @@
   margin-bottom: 50px;
 }
 
-.listItem {
+.addTodo {
   background-color: #b2d4d8;
   border: none;
   border-radius: 8px;
@@ -45,13 +46,13 @@
   font-size: 18px;
   padding: 10px 15px;
   margin: 15px 0;
-  color: #131A28;
-  font-weight: bold;
+  color: #131a28;
+  /* font-weight: bold; */
   text-align: center;
   cursor: pointer;
 }
 
-.todoItem {
+.todos {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,13 +65,14 @@
   margin: 15px 0;
 }
 
-.todoName {
-  color: #131A28;
+.addTodo::placeholder {
+  color: black; 
+  font-style: italic; 
 }
 
-/* .todoButtons {
-  display: flex;
-} */
+.todoName {
+  color: #131a28;
+}
 
 .todoButtons button {
   margin-left: 5px;
@@ -79,8 +81,8 @@
   border-radius: 8px;
   font-size: 18px;
   padding: 10px 15px;
-  color: #131A28;
-  font-weight: bold;
+  color: #131a28;
+  /* font-weight: bold; */
   cursor: pointer;
 }
 
@@ -88,3 +90,15 @@
   background-color: #eeebeb;
   cursor: not-allowed;
 }
+
+.title-container {
+  display: flex;
+  align-items: center; 
+  margin-bottom: 20px; 
+}
+
+.note-image {
+  width: 50px; 
+  height: auto; 
+  margin-left: 20px; 
+  }
